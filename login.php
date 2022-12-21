@@ -2,8 +2,9 @@
 $auth = 0; 
 include 'lib/includes.php'; 
 
-
-
+/**
+ * TRAITEMENT DU FORMULAIRE
+ */
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $db->quote($_POST['username']);
     $password = sha1($_POST['password']);
@@ -11,13 +12,20 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $select = $db->query($sql);
     if ($select->rowCount() > 0) {
         $_SESSION['Auth'] = $select->fetch();
+        setFlash('Vous êtes maintenent connecté !');
         header('Location:' . WEBROOT . 'admin/index.php');
+        die();
     }
 }
 
-?>
+
+/**
+ * INCLUSION DU HEADER
+ */
 
 include 'partials/header.php'; 
+
+?>
 
 <form action="#" method="POST">
 
