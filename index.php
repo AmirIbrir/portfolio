@@ -1,3 +1,4 @@
+<?php include 'lib/includes.php'; ?>
 <?php include 'partials/header.php'; ?>
 
 
