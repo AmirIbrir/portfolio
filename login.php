@@ -7,7 +7,7 @@ var_dump($_POST);
 $_POST
 ?>
 
-<form action="#">
+<form action="#" method="POST">
 
     <div class="form-group">
         <label for="username">Nom d'utilisateur</label>
