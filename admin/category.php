@@ -2,16 +2,28 @@
 include '../lib/includes.php';
 include '../partials/admin_header.php';
 
+/**
+ * SUPPRESSION
+ */
+
+ if (isset($_GET['delete'])) {
+    checkCsrf();
+    $id = $db->quote($_GET['delete']);
+    $db->query("DELETE FROM categories WHERE id=$id");
+    setFlash('La catégorie a bien été supprimée');
+    header('Location: category.php');
+    die();
+ }
+
+ /**
+  * LES CATÉGORIES
+  */
+
 $select = $db->query('SELECT id, name, slug FROM categories');
 $categories = $select->fetchAll();
 
 
-/**
- * SUPPRESSION
- */
-if (isset($_GET['delete'])) {
-    checkCsrf();
-}
+
 ?>
 
 <h1>LES CATÉGORIES</h1>
