@@ -1,9 +1,9 @@
-
 <?php
 $directory = basename(dirname(dirname(__FILE__))); 
 $url = explode($directory, $_SERVER['REQUEST_URI']);
-//var_dump(basename(dirname(dirname(__FILE__))));
-
+//var_dump($url);
+//var_dump(dirname(__FILE__, 2));
+//var_dump(basename((dirname(__FILE__, 2))));
 if (count($url) == 1) {
     define('WEBROOT', '/');
 }else{
@@ -12,3 +12,4 @@ if (count($url) == 1) {
 
 //var_dump(WEBROOT);
 ?>
+
