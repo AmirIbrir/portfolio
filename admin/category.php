@@ -6,25 +6,27 @@ include '../partials/admin_header.php';
  * SUPPRESSION
  */
 
- if (isset($_GET['delete'])) {
+if (isset($_GET['delete'])) {
     checkCsrf();
     $id = $db->quote($_GET['delete']);
     $db->query("DELETE FROM categories WHERE id=$id");
     setFlash('La catégorie a bien été supprimée');
     header('Location: category.php');
     die();
- }
+}
 
- /**
-  * LES CATÉGORIES
-  */
+/**
+ * LES CATÉGORIES
+ */
 
 $select = $db->query('SELECT id, name, slug FROM categories');
 $categories = $select->fetchAll();
 
-
-
 ?>
+
+<p>
+    <a href="category_edit.php" class="btn btn-succes">Ajouter une nouvelle catégorie</a>
+</p>
 
 <h1>LES CATÉGORIES</h1>
 
@@ -45,7 +47,7 @@ $categories = $select->fetchAll();
                 <td><?= $category['name']; ?></td>
                 <td>
                     <a href="category_edit.php?id=<?= $category['id']; ?>" class="btn btn-default">Edit</a>
-                    <a href="?delete=<?= $category['id']; ?>&<?=csrf(); ?>" class="btn btn-error" onclick="return confirm('voulez-vous vraiment supprimer ?')">Supprimer</a>
+                    <a href="?delete=<?= $category['id']; ?>&<?= csrf(); ?>" class="btn btn-error" onclick="return confirm('voulez-vous vraiment supprimer ?')">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>
